@@ -1,0 +1,34 @@
+<div class="container">
+
+    <h1>Oitems</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Title</th>
+          <th>Url</th>
+          <th>Text</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @oitems.each do |oitem| %>
+          <tr>
+            <td><%= oitem.user.email %></td>
+            <td><%= oitem.title %></td>
+            <td><%= oitem.url %></td>
+            <td><%= oitem.text %></td>
+            <td><%= link_to 'Show', oitem %></td>
+            <td><%= link_to 'Edit', edit_oitem_path(oitem) %></td>
+            <td><%= link_to 'Destroy', oitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Oitem', new_oitem_path %>
+</div>

@@ -1,0 +1,25 @@
+<div class="container">
+    <p>
+      <strong>User:</strong>
+        <%= @oitem.user %>
+    </p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @oitem.title %>
+    </p>
+
+    <p>
+      <strong>Url:</strong>
+      <%= @oitem.url %>
+    </p>
+
+    <p>
+      <strong>Text:</strong>
+      <%= @oitem.text %>
+    </p>
+    <% if @oitem.user == current_user %>
+      <%= link_to 'Edit', edit_oitem_path(@oitem) %> |
+    <% end %>
+    <%= link_to 'Back', oitems_path %>
+</div>
