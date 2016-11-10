@@ -8,22 +8,30 @@
           <th>Title</th>
           <th>Url</th>
           <th>Text</th>
-          <th colspan="3"></th>
+          <th colspan="4"></th>
         </tr>
       </thead>
       
         <tbody>
             <% @oitems.each do |oitem| %>
               <tr>
-                  <td><%= oitem.user.username %></td>
+                <td><%= oitem.votes_for.up.size %></td>
+                <td><%= oitem.user.username %></td>
                 <td><%= oitem.title %></td>
                 <td><%= oitem.url %></td>
                 <td><%= oitem.text %></td>
                 <td><%= link_to 'Show', oitem %></td>
-                <td><%= link_to 'Edit', edit_oitem_path(oitem) %></td>
-                <td><%= link_to 'Destroy', oitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-        <% end %>
+                  <% if current_user.voted_up_on? oitem %>
+                     <td><%= link_to 'UnVote', unvote_oitem_path(oitem), method: :delete %></td>
+                  <% else %>
+                     <td><%= link_to 'Vote', vote_oitem_path(oitem), method: :post %></td>
+                  <% end %>
+                  <% if oitem.user ==current_user %>
+                    <td><%= link_to 'Edit', edit_oitem_path(oitem) %></td>
+                    <td><%= link_to 'Destroy', oitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <% end %>
+                </tr>
+           <% end %>
       </tbody>
     </table>
 
